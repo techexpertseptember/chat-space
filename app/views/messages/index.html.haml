@@ -6,16 +6,16 @@
       %p.side-header__box__user-name ishii
       %ul.side-header__box__menu
         %li.side-header__box__menu__new-group
-          %a{:href => "/groups/new"}
+          = link_to "#" do
             %i.fa.fa-edit
         %li.side-header__box__menu__edit-user
-          %a{:href => "/users/1065/edit"}
+          = link_to "#" do
             %i.fa.fa-cog  
     .groups
-      %a{:href => "/groups/2408/messages"}
-      .group
-        %p.group__group-name tt
-        %p.group__latest-message まだメッセージがありません
+      = link_to "#" do
+        .group
+          %p.group__group-name tt
+          %p.group__latest-message まだメッセージがありません
     
   .chat-main
     .main-header
@@ -33,9 +33,9 @@
               ito.y
             %li.main-header__left-box__member-list__member 
               ito.y
-      %a.main-header__edit-btn{:href => "/groups/2375/edit"}
-        Edit
-      
+      //#には移動先のURLを記載
+      = link_to "Edit", "#" ,class:"main-header__edit-btn"      
+            
     .messages
       .message{"data-message_id" => "6280"}
         .message__upper-info
@@ -43,7 +43,7 @@
           %p.message__upper-info__date 2019/07/12(Fri) 20:09:03
           %p.message__text test
     .form
-      %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/2375/messages", :enctype => "multipart/form-data", :method => "post"}
+      %form#new_message.new_message{"accept-charset":"UTF-8", action:"/groups/2375/messages",enctype:"multipart/form-data",method:"post"}
         .input-box
           %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
           %label.input-box__image{:for => "message_image"}
