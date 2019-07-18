@@ -1,52 +1,30 @@
-.wrapper.clearfix
-  .flash-box
-    グループを作成しました。
-  .chat-side
-    .side-header
-      %p.side-header__box__user-name ishii
-      %ul.side-header__box__menu
-        %li.side-header__box__menu__new-group
-          = link_to "#" do
-            %i.fa.fa-edit
-        %li.side-header__box__menu__edit-user
-          = link_to "#" do
-            %i.fa.fa-cog  
-    .groups
-      = link_to "#" do
-        .group
-          %p.group__group-name tt
-          %p.group__latest-message まだメッセージがありません
-    
-  .chat-main
-    .main-header
-      .main-header__left-box
-        %h2.main-header__left-box__current-group{"data-group_id" => "2375"}
-          starrrrrrrrrrrrrrrr
-        .main-header__left-box__member-box
-          %p Member：
-          %ul.main-header__left-box__member-list 
-            %li.main-header__left-box__member-list__member 
-              ito.y
-            %li.main-header__left-box__member-list__member 
-              ito.y
-            %li.main-header__left-box__member-list__member 
-              ito.y
-            %li.main-header__left-box__member-list__member 
-              ito.y
-      //#には移動先のURLを記載
-      = link_to "Edit", "#" ,class:"main-header__edit-btn"      
-            
+.wrapper
+
+  = render 'shared/side_bar'
+
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          グループ名
+        %ul.left-header__members
+          Member：
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+      .right-header
+        .right-header__button
+          Edit
     .messages
-      .message{"data-message_id" => "6280"}
-        .message__upper-info
-          %p.message__upper-info__talker hiroki
-          %p.message__upper-info__date 2019/07/12(Fri) 20:09:03
-          %p.message__text test
+      = render @messages
     .form
-      %form#new_message.new_message{"accept-charset":"UTF-8", action:"/groups/2375/messages",enctype:"multipart/form-data",method:"post"}
-        .input-box
-          %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
-          %label.input-box__image{:for => "message_image"}
-            %i.fa.fa-image
-            %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
-        %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
