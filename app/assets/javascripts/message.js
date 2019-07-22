@@ -1,11 +1,15 @@
 $(function(){
 
     function buildHTML(message){
-        if ( message.image ) {
+        if ( message.image.url == null) {
             // 変数にimgタグを入れる
+            var img = ""
         } else {
             // 変数に空の文字列を入れる
+            var img = `<img src=${message.image.url} ></img>`
+
         } //三項演算子 if ------? ? trueだった時の処理 : falseだった時の処理
+        
         var html =
         `<div class="message" data-message-id=${message.id}>
             <div class="upper-message">
@@ -21,7 +25,7 @@ $(function(){
                 ${message.content}
                 </p>
             </div>
-            <asset_path src=${message.image} >
+                ${img}
             </div>`
         return html;
     }
@@ -39,11 +43,12 @@ $(function(){
         contentType: false
       })
        .done(function(data){
-
+        console.log(data);
          var html = buildHTML(data);
          $('.messages').append(html);      
          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
          $('form')[0].reset();
+         
        })
        .fail(function(){
         alert('error');
