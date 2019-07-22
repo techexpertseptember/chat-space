@@ -2,6 +2,10 @@ $(function(){
 
     function buildHTML(message){
         if ( message.image ) {
+            // 変数にimgタグを入れる
+        } else {
+            // 変数に空の文字列を入れる
+        } //三項演算子 if ------? ? trueだった時の処理 : falseだった時の処理
         var html =
         `<div class="message" data-message-id=${message.id}>
             <div class="upper-message">
@@ -20,25 +24,6 @@ $(function(){
             <asset_path src=${message.image} >
             </div>`
         return html;
-        } else {
-        var html =
-        `<div class="message" data-message-id=${message.id}>
-            <div class="upper-message">
-                <div class="upper-message__user-name">
-                ${message.user_name}
-                </div>
-                <div class="upper-message__date">
-                ${message.date}
-                </div>
-            </div>
-            <div class="lower-message">
-                <p class="lower-message__content">
-                ${message.content}
-                </p>
-            </div>
-            </div>`
-        return html;
-        };
     }
 
     $(".new_message").on("submit", function(e){
