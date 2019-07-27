@@ -1,5 +1,4 @@
-$(function(){
-
+$(window).on('load', function(){
     function buildHTML(message){
         img = message.image.url ? `<img src=${message.image.url} ></img>` : ''
 
@@ -60,7 +59,7 @@ $(function(){
         .done(function(messages) {
           var insertHTML = '';
           messages.forEach(function (message){
-            insertHTML = buildMessageHTML(message);
+            insertHTML = buildHTML(message);
             $('.messages').append(insertHTML);      
             $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
          })
