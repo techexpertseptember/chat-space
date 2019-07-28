@@ -40,6 +40,7 @@ $(window).on('load', function(){
          $('.form__submit').prop('disabled', false);
        })
        .fail(function(){
+        $('.form__submit').prop('disabled', false);
         alert('error');
        })
 
