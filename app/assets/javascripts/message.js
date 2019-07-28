@@ -1,7 +1,6 @@
 $(window).on('load', function(){
     function buildHTML(message){
         img = message.image.url ? `<img src=${message.image.url} ></img>` : ''
-
         var html =
         `<div class="message" data-message-id=${message.id}>
             <div class="upper-message">
@@ -9,7 +8,8 @@ $(window).on('load', function(){
                 ${message.user_name}
                 </div>
                 <div class="upper-message__date">
-                ${message.created_at}
+                ${message.created_at.strftime("%Y/%m/%d %H:%M")}
+                config.time_zone = 'Tokyo'
                 </div>
             </div>
             <div class="lower-message">
