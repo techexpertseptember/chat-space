@@ -8,8 +8,7 @@ $(window).on('load', function(){
                 ${message.user_name}
                 </div>
                 <div class="upper-message__date">
-                ${message.created_at.strftime("%Y/%m/%d %H:%M")}
-                config.time_zone = 'Tokyo'
+                ${message.created_at}
                 </div>
             </div>
             <div class="lower-message">
