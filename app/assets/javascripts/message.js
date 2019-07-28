@@ -2,7 +2,7 @@ $(window).on('load', function(){
     function buildHTML(message){
         img = message.image.url ? `<img src=${message.image.url} ></img>` : ''
         var html =
-        `<div class="message" data-message-id=${message.id}>
+        `<div class="message" data-id=${message.id}>
             <div class="upper-message">
                 <div class="upper-message__user-name">
                 ${message.user_name}
@@ -49,6 +49,7 @@ $(window).on('load', function(){
 
     var reloadMessages = function() {
         last_message_id = $('.message:last').data('id');
+        console.log(last_message_id)
         if (window.location.href.match(/\/groups\/\d+\/messages/)){
         $.ajax({
           url: 'api/messages',
@@ -57,6 +58,7 @@ $(window).on('load', function(){
           data: {id: last_message_id}
         })
         .done(function(messages) {
+          console.log(messages)
           var insertHTML = '';
           messages.forEach(function (message){
             insertHTML = buildHTML(message);
